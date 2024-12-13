@@ -8,12 +8,9 @@ body {
   display: flex;
   flex-flow: wrap;
   border: solid;
-  width: 250px;
-  height: auto;
-  justify-content: space-evenly;
 }
 
 .square {
-  border: solid red;
+  border: solid;
   box-sizing: border-box;
 }
