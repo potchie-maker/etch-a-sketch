@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
+  display: flex;
+  flex-flow: wrap;
+  border: solid;
+  width: 250px;
+  height: auto;
+  justify-content: space-evenly;
+}
+
+.square {
+  border: solid red;
+  box-sizing: border-box;
+}
