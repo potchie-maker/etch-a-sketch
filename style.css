@@ -4,11 +4,11 @@ body {
   justify-content: center;
   align-items: center;
 }
-/* 
+
 #btns {
   display: flex;
   justify-content: space-between;
-} */
+}
 
 #btns button {
   height: auto;
