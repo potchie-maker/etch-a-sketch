@@ -48,7 +48,7 @@ function createGrid(num) {
 let lastGridSize = 0;
 
 function getGridSize() {
-  let num = parseInt(prompt("What grid size would you like? (Value cannot exceed 100)"));
+  let num = parseInt(prompt("What grid size would you like? (Value cannot exceed 100)", "16"));
 
   if (isNaN(num) || num <= 0 || num > 100) {
     alert("Please enter a valid number.");
