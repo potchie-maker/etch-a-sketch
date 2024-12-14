@@ -3,7 +3,7 @@ function createGrid(num) {
   container.id = "container";
   document.body.appendChild(container);
 
-  let containerSize = 500;
+  let containerSize = 700;
   container.style.width = `${containerSize}px`;
   container.style.height = `${containerSize}px`;
 
@@ -29,18 +29,20 @@ function getGridSize() {
 }
 
 function removeGrid() {
-
+  const square = document.querySelectorAll("#container .square");
+  square.forEach((box) => box.remove());
+  document.querySelector("#container").remove();
 }
 
 const startBtn = document.querySelector("#btns #start");
-const resetBtn = document.querySelector("#btns #reset")
 
 startBtn.addEventListener("click", () => {
-  getGridSize();
-  startBtn.id = "reset";
-  startBtn.textContent = "RESET"
-})
-resetBtn.addEventListener("click", () => {
-  removeGrid();
-  getGridSize();
-})
+  if (startBtn.id === "start") {
+    getGridSize();
+    startBtn.id = "reset";
+    startBtn.textContent = "RESET"
+  } else if (startBtn.id === "reset") {
+    removeGrid();
+    getGridSize();
+  }
+});
