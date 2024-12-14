@@ -1,6 +1,8 @@
-const container = document.querySelector("#container");
-
 function createGrid(num) {
+  const container = document.createElement("div");
+  container.id = "container";
+  document.body.appendChild(container);
+
   let containerSize = 500;
   container.style.width = `${containerSize}px`;
   container.style.height = `${containerSize}px`;
@@ -16,4 +18,29 @@ function createGrid(num) {
   }
 }
 
-createGrid(16);
+function getGridSize() {
+  let num = parseInt(prompt("What grid size would you like? (Value cannot exceed 100)"));
+
+  if (num === 0 || num > 100 || !num) {
+    alert("Please enter a valid number.");
+    return getGridSize();
+  }
+  createGrid(num);
+}
+
+function removeGrid() {
+
+}
+
+const startBtn = document.querySelector("#btns #start");
+const resetBtn = document.querySelector("#btns #reset")
+
+startBtn.addEventListener("click", () => {
+  getGridSize();
+  startBtn.id = "reset";
+  startBtn.textContent = "RESET"
+})
+resetBtn.addEventListener("click", () => {
+  removeGrid();
+  getGridSize();
+})

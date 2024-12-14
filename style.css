@@ -1,7 +1,32 @@
 body {
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
+}
+
+#btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+#btns button {
+  height: 50px;
+  width: auto;
+  margin: 25px;
+  cursor: pointer;
+}
+
+#btns #start {
+  background-color: rgb(0, 240, 0);
+}
+
+#btns #reset{
+  background-color: rgb(0, 179, 255);
+}
+
+#btns #clear {
+  background-color: aliceblue;
 }
 
 #container {
@@ -11,6 +36,6 @@ body {
 }
 
 .square {
-  border: solid;
+  border: solid 1px;
   box-sizing: border-box;
 }
