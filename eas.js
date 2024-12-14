@@ -45,23 +45,24 @@ function createGrid(num) {
   }
 }
 
-let lastGridSize = 0;
+let latestGridSize = 0;
 
 function getGridSize() {
   let num = parseInt(prompt("What grid size would you like? (Value cannot exceed 100)", "16"));
 
-  if (isNaN(num) || num <= 0 || num > 100) {
+  if (num === null || isNaN(num) || num <= 0 || num > 100) {
     alert("Please enter a valid number.");
-    return getGridSize();
+    return false;
   }
-  createGrid(num);
-  lastGridSize = num;
+  latestGridSize = num;
+  return true;
 }
 
 function removeGrid() {
-  const square = document.querySelectorAll("#container .square");
-  square.forEach((box) => box.remove());
-  document.querySelector("#container").remove();
+  const container = document.querySelector("#container");
+  if (container) {
+    container.remove();
+  }
 }
 
 const startBtn = document.querySelector("#btns #start");
@@ -76,7 +77,7 @@ function makeClearBtn() {
 
     clearBtn.addEventListener("click", () => {
       removeGrid();
-      createGrid(lastGridSize);
+      createGrid(latestGridSize);
     });
   }
 }
@@ -103,13 +104,15 @@ function makeStopBtn() {
 
 startBtn.addEventListener("click", () => {
   if (startBtn.id === "start") {
-    getGridSize();
+    if (getGridSize() === false) return;
     startBtn.id = "new-grid";
     startBtn.textContent = "NEW GRID";
+    createGrid(latestGridSize);
     makeClearBtn();
     makeStopBtn();
   } else if (startBtn.id === "new-grid") {
+    if (getGridSize() === false) return;
     removeGrid();
-    getGridSize();
+    createGrid(latestGridSize);
   }
 });
