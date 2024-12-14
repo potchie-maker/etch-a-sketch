@@ -67,11 +67,11 @@ function makeStopBtn() {
 startBtn.addEventListener("click", () => {
   if (startBtn.id === "start") {
     getGridSize();
-    startBtn.id = "reset";
-    startBtn.textContent = "RESET";
+    startBtn.id = "new-grid";
+    startBtn.textContent = "NEW GRID";
     makeClearBtn();
     makeStopBtn();
-  } else if (startBtn.id === "reset") {
+  } else if (startBtn.id === "new-grid") {
     removeGrid();
     getGridSize();
   }
