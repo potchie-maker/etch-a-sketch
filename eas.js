@@ -11,7 +11,7 @@ function createGrid(num) {
   container.id = "container";
   document.body.appendChild(container);
 
-  let containerSize = window.innerWidth - 100;
+  let containerSize = window.innerWidth * 0.4;
   container.style.width = `${containerSize}px`;
   container.style.height = `${containerSize}px`;
 
