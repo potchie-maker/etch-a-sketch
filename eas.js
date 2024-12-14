@@ -21,7 +21,7 @@ function createGrid(num) {
 function getGridSize() {
   let num = parseInt(prompt("What grid size would you like? (Value cannot exceed 100)"));
 
-  if (num === 0 || num > 100 || !num) {
+  if (isNaN(num) || num <= 0 || num > 100) {
     alert("Please enter a valid number.");
     return getGridSize();
   }
@@ -59,7 +59,9 @@ function makeStopBtn() {
       startBtn.textContent = "START"
       removeGrid();
       stopBtn.remove();
-      document.querySelector("#btns #clear").remove();
+      
+      const clearBtn = document.querySelector("#btns #clear").remove();
+      if (clearBtn) clearBtn.remove();
     });
   }
 }
