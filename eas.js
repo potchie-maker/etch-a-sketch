@@ -36,11 +36,41 @@ function removeGrid() {
 
 const startBtn = document.querySelector("#btns #start");
 
+function makeClearBtn() {
+  if (!document.querySelector("#btns #clear")) {
+    const btns = document.querySelector("#btns");
+    const clearBtn = document.createElement("button");
+    clearBtn.textContent = "CLEAR";
+    clearBtn.id = "clear"
+    btns.appendChild(clearBtn);
+  }
+}
+
+function makeStopBtn() {
+  if (!document.querySelector("#btns #stop")) {
+    const btns = document.querySelector("#btns");
+    const stopBtn = document.createElement("button");
+    stopBtn.textContent = "STOP";
+    stopBtn.id = "stop"
+    btns.appendChild(stopBtn);
+
+    stopBtn.addEventListener("click", () => {
+      startBtn.id = "start";
+      startBtn.textContent = "START"
+      removeGrid();
+      stopBtn.remove();
+      document.querySelector("#btns #clear").remove();
+    });
+  }
+}
+
 startBtn.addEventListener("click", () => {
   if (startBtn.id === "start") {
     getGridSize();
     startBtn.id = "reset";
-    startBtn.textContent = "RESET"
+    startBtn.textContent = "RESET";
+    makeClearBtn();
+    makeStopBtn();
   } else if (startBtn.id === "reset") {
     removeGrid();
     getGridSize();
