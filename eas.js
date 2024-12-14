@@ -1,22 +1,51 @@
+function getRandomRGB() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 function createGrid(num) {
   const container = document.createElement("div");
   container.id = "container";
   document.body.appendChild(container);
 
-  let containerSize = 700;
+  let containerSize = window.innerWidth - 100;
   container.style.width = `${containerSize}px`;
   container.style.height = `${containerSize}px`;
 
   let squareSize = containerSize/num;
 
+  let isMouseDown = false;
+  document.addEventListener("mouseup", () => isMouseDown = false);
+  
   for (let i = 1; i <= (num * num); i++) {
     const square = document.createElement("div");
     square.classList.add("square");
     square.style.width = `${squareSize}px`;
     square.style.height = `${squareSize}px`;
+    
+    let opacity = 0;
+
+    square.addEventListener("mousedown", () => {
+      isMouseDown = true;
+      square.style.backgroundColor = getRandomRGB();
+      opacity = Math.min(opacity + 0.1, 1);
+      square.style.opacity = opacity;
+    });
+    square.addEventListener("mouseover", () => {
+      if (isMouseDown) {
+        square.style.backgroundColor = getRandomRGB();
+        opacity = Math.min(opacity + 0.1, 1);
+        square.style.opacity = opacity;
+      }
+    });
     container.appendChild(square);
   }
 }
+
+let lastGridSize = 0;
 
 function getGridSize() {
   let num = parseInt(prompt("What grid size would you like? (Value cannot exceed 100)"));
@@ -26,6 +55,7 @@ function getGridSize() {
     return getGridSize();
   }
   createGrid(num);
+  lastGridSize = num;
 }
 
 function removeGrid() {
@@ -43,6 +73,11 @@ function makeClearBtn() {
     clearBtn.textContent = "CLEAR";
     clearBtn.id = "clear"
     btns.appendChild(clearBtn);
+
+    clearBtn.addEventListener("click", () => {
+      removeGrid();
+      createGrid(lastGridSize);
+    });
   }
 }
 
@@ -59,8 +94,8 @@ function makeStopBtn() {
       startBtn.textContent = "START"
       removeGrid();
       stopBtn.remove();
-      
-      const clearBtn = document.querySelector("#btns #clear").remove();
+
+      const clearBtn = document.querySelector("#btns #clear");
       if (clearBtn) clearBtn.remove();
     });
   }

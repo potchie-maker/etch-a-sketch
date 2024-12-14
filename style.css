@@ -49,6 +49,6 @@ body {
 }
 
 .square {
-  border: solid 1px;
+  border: solid 0px;
   box-sizing: border-box;
 }
